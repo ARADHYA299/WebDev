@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to Airbnb</title>
+  <script src="https://cdn.tailwindcss.com "></script>
+  <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/airbnb-2.svg " />
+</head>
+
+<body class="bg-gray-50 font-sans text-gray-800">
+
+ 
+  <nav class="bg-white shadow-md px-6 py-4 flex justify-between items-center sticky top-0 z-10">
+    <div class="text-pink-600 font-bold text-xl">Airbnb</div>
+
+    <a href="/host/add-home"
+       class="bg-gradient-to-r from-pink-500 to-red-500 text-white text-sm px-5 py-2 rounded-full hover:from-pink-600 hover:to-red-600 transition-all duration-300 shadow-md">
+       ➕ Add Your Home
+    </a>
+  </nav>
+
+ 
+  <header class="bg-white p-6 mt-4">
+    <div class="container mx-auto text-center">
+      <h1 class="text-4xl font-extrabold text-pink-600">Welcome to Airbnb</h1>
+      <p class="text-gray-500 mt-2">Find your home away from home</p>
+    </div>
+  </header>
+
+
+  <main class="container mx-auto px-4 py-8">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Here are our registered homes</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% if (registeredHomes && registeredHomes.length > 0) { %>
+        <% registeredHomes.forEach(home => { %>
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl border border-gray-200">
+            <div class="h-40 bg-gradient-to-br from-pink-100 to-red-100 flex items-center justify-center">
+              <span class="text-pink-500 font-semibold text-lg"><%= home.Housename || 'Home' %></span>
+            </div>
+            <div class="p-5">
+              <h3 class="text-xl font-semibold text-gray-700 mb-2"><%= home.Housename %></h3>
+              <p class="text-gray-500 text-sm mb-3">📍 <%= home.Location || 'Location not specified' %></p>
+              <p class="text-gray-800 font-medium">Price: $<%= home.Price || 'N/A' %> / night</p>
+              <a href="/details?id=<%= home.id %>"
+                 class="mt-4 block text-center bg-pink-500 hover:bg-pink-600 text-white font-medium py-2 px-4 rounded-full transition duration-300">
+                View Details
+              </a>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p class="col-span-full text-center text-gray-400 italic">No homes available at the moment.</p>
+      <% } %>
+    </div>
+  </main>
+
+  <footer class="bg-white text-center py-4 text-sm text-gray-400 mt-10 border-t">
+    © 2025 Airbnb, Inc. All rights reserved.
+  </footer>
+
+</body>
+</html>
